@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Mancala</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="/app.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row alert-success">
+        <label>Instructions</label>
+        <ol>
+            <li><p>Pit indices count from right to left on the first row, starting from 1 to 6</p></li>
+            <li><p>They then count from left to right, on the second row, starting at 8 to 13</p></li>
+            <li><p>Indices 7 and 0 are reserved for Bit pits and you can't make a more on them</p></li>
+            <li><p>Green Bit pit has index 7 and Red Big pit has index 0</p></li>
+            <li><p>Once a new player has joined the game, press "Start Game" before Making a move</p></li>
+            <li><p>Lol, I'm happy to talk more about what I could have done differently in some places given the time to change it if you call me for an interview😂😂</p></li>
+        </ol>
+    </div>
+    <br>
+    <div class="row">
+        <form class="form-inline">
+            <div class="form-group">
+                <button id="create-new" class="btn btn-default" type="submit">Create New</button>
+                <button id="join-existing" class="btn btn-default" type="submit">Join Existing</button>
+                <button id="start-game" class="btn btn-default" type="submit">Start Game</button>
+            </div>
+        </form>
+    </div>
+
+    <br>
+    <br>
+
+    <div id="game-container" hidden="hidden">
+        <div class="row">
+            <div class="form-group">
+                <label for="index7">Player 1 Big Pit</label>
+                <div class = "col-md-2"><button class="btn btn-block btn-success" id = "index7">Count = 1</button></div>
+            </div>
+            <div class="form-group">
+                <label for="index0">Player 2 Big Pit</label>
+                <div class = "col-md-2"><button class="btn btn-block btn-danger" id = "index0">Count = 0</button></div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index6">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index5">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index4">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index3">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index2">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-success" id = "index1">6</button></div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index8">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index9">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index10">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index11">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index12">6</button></div>
+            <div class = "col-md-1"><button class = "btn btn-block btn-danger" id = "index13">6</button></div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="holeIndex">What pit index do you want to move?</label>
+                        <input type="text" id="holeIndex" class="form-control" placeholder="Pit index to move...">
+                    </div>
+                    <button id="make-move" class="btn btn-primary" type="submit">Make Move</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
