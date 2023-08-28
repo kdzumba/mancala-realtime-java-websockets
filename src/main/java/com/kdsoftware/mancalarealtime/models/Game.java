@@ -148,7 +148,7 @@ public class Game
         var holeToEmpty = pits.get(startIndex);
 
         //We need to know the index at which we shouldn't sow any pebbles
-        var opponentBitPitIndex = participants.size() % (player.getTurnNumber() + 1);
+        var opponentBigPitIndex = player.getTurnNumber() == 0 ? 0 : 7;
 
         //We want to start distributing them from the pit just left of startIndex
         //Left direction means in increasing holes indices (Anticlockwise) so +1
@@ -159,8 +159,8 @@ public class Game
         //Keep adding stones to the next pit until there are no stones to move
         while(holeToEmpty.getStoneCount() > 0)
         {
-            if(nextPitIndex == opponentBitPitIndex)
-                break;
+            if(nextPitIndex == opponentBigPitIndex)
+                continue;
 
             var currentPit = pits.get(nextPitIndex);
             currentPit.addStone();
@@ -227,7 +227,7 @@ public class Game
     {
         //The last pit index was empty if it now contains a single stone (means there was
         //nothing before, and now we added it)
-        if(pits.get(lastPitIndex).getStoneCount() == 1)
+        if(playerIndicesMap.get(playerIndex).contains(lastPitIndex) && pits.get(lastPitIndex).getStoneCount() == 1)
         {
             var oppositeIndex = oppositeIndexMap.get(lastPitIndex);
             var bigPitIndex = getBigPitIndex(playerIndex);
